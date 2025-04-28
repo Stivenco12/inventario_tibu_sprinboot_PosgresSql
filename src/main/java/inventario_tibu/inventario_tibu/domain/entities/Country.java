@@ -25,10 +25,13 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    
     @Column(name = "name_country",length = 50, nullable = false, unique = true)
     String nameCountry;
 
     @OneToMany(mappedBy = "idCountry",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Region> regions = new HashSet<>();
+
+    
 }

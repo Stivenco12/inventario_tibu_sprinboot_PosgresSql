@@ -1,21 +1,14 @@
 package inventario_tibu.inventario_tibu.domain.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
@@ -24,22 +17,19 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@Table(name = "regions")
+@Table(name = "CITIES")
 @Entity
-public class Region {
+public class city {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(name = "name_region", length = 50, nullable = false, unique = true)
+    @Column(name = "name_city", length = 50, nullable = false, unique = true)
     String nameRegion;
 
     @ManyToOne
-    @JoinColumn(name = "id_country")
+    @JoinColumn(name = "id_city")
     @JsonBackReference
-    Country idCountry;
+    Region idCity;
 
-    @OneToMany(mappedBy = "idCity",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<city> citys = new HashSet<>();
 }
